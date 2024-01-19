@@ -9,6 +9,10 @@ fs.writeFile(filePath, "", err => {
     }
     stdout.write("Write the text\n")
     stdin.on("data", (data) => {
+        if(data.toString().trim() === "exit") {
+            stdout.write("Good luck!")
+            process.exit()
+        }
         fs.appendFile(filePath, data, err => {
             if (err) {
                 throw err
