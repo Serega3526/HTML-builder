@@ -43,10 +43,7 @@ fs.readdir(path.join(__dirname, 'components'), { withFileTypes: true }, (err, co
 })
 
 /* STYLE*/
-// fs.open(path.join(__dirname, "project-dist", "style.css"), 'w', (err) => {
-//     if(err) throw err;
-//     console.log('File created');
-// });
+
 fs.readdir(path.join(__dirname, "styles"), { withFileTypes: true }, (err, files) => {
     if (err) throw err
     files.forEach(file => {
@@ -63,19 +60,9 @@ fs.readdir(path.join(__dirname, "styles"), { withFileTypes: true }, (err, files)
 })
 
 /*ASSETS*/
-// fs.mkdir(filePathNew, { recursive: true }, (err,files) => {
-//     if(err) {
-//         throw err
-//     }
-//     console.log("папка создана")
-// })
+
 fs.readdir(path.join(__dirname, "project-dist", "assets"), (error, files) => {
     if (error) return console.log(error);
-    // for (const file of files) {
-    //     fs.unlink(path.join(__dirname, "project-dist", "assets", file), (err) => {
-    //       if (err) throw err;
-    //     });
-    // }
     console.log("папка очищена")
     fs.readdir(path.join(__dirname, "assets"), (error, files) => {  
         if (error) return console.log(error);
