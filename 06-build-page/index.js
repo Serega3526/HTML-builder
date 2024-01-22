@@ -71,11 +71,11 @@ fs.readdir(path.join(__dirname, "styles"), { withFileTypes: true }, (err, files)
 // })
 fs.readdir(path.join(__dirname, "project-dist", "assets"), (error, files) => {
     if (error) return console.log(error);
-    for (const file of files) {
-        fs.unlink(path.join(__dirname, "project-dist", "assets", file), (err) => {
-          if (err) throw err;
-        });
-    }
+    // for (const file of files) {
+    //     fs.unlink(path.join(__dirname, "project-dist", "assets", file), (err) => {
+    //       if (err) throw err;
+    //     });
+    // }
     console.log("папка очищена")
     fs.readdir(path.join(__dirname, "assets"), (error, files) => {  
         if (error) return console.log(error);
