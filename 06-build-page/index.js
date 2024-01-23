@@ -15,28 +15,30 @@ fs.mkdir(path.join(__dirname, "project-dist"), { recursive: true }, (err,files) 
         fs.open(path.join(__dirname, "project-dist", "index.html"), 'w', (err) => {
             if(err) throw err;
             console.log('File created');
-        });
-        fs.open(path.join(__dirname, "project-dist", "style.css"), 'w', (err) => {
-            if(err) throw err;
-            console.log('File created');
             let contentTemplate = ''
             fs.readFile(path.join(__dirname, "template.html"), (err, content) => {
                 if (err) throw err
                 contentTemplate = content.toString()
                 fs.readdir(path.join(__dirname, 'components'), { withFileTypes: true }, (err, components) => {
                     if (err) throw err
-                    components.forEach(element => {
+                    components.forEach((element, index, array) => {
                         fs.readFile(path.join(__dirname, 'components', element.name), (err, data) => {
                             if (err) throw err
                             let tempComponent = element.name.slice(0, element.name.indexOf('.'))
                             contentTemplate = contentTemplate.replace(`{{${tempComponent}}}`, data.toString())
-                            fs.writeFile(path.join(__dirname, "project-dist", "index.html"), contentTemplate, err => {
-                                if (err) throw err
-                            })
+                            if (index === array.length - 1) {
+                                fs.writeFile(path.join(__dirname, "project-dist", "index.html"), contentTemplate, err => {
+                                    if (err) throw err
+                                })
+                            }
                         })
                     });
                 })
             })
+        });
+        fs.open(path.join(__dirname, "project-dist", "style.css"), 'w', (err) => {
+            if(err) throw err;
+            console.log('File created');
             
 
             /* STYLE*/
